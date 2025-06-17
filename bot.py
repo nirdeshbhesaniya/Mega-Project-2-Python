@@ -144,11 +144,7 @@ def main():
     app.add_handler(CallbackQueryHandler(handle_language_choice))
 
     print("✅ Starting webhook...")
-    app.run_webhook(
-        listen="0.0.0.0",
-        port=int(os.environ.get("PORT", 5000)),
-        webhook_url=WEBHOOK_URL + f"/{TELEGRAM_BOT_TOKEN}"
-    )
+    app.run_polling()
 
 
 if __name__ == "__main__":
