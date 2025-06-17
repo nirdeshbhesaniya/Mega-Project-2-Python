@@ -9,6 +9,24 @@ from telegram.ext import (
     CallbackQueryHandler, ContextTypes, filters
 )
 
+import os
+
+WEBHOOK_URL = f"https://codebooster.onrender.com"  # Replace with your actual Render URL
+
+def main():
+    app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    app.add_handler(CallbackQueryHandler(handle_language_choice))
+
+    print("✅ Starting webhook...")
+    app.run_webhook(
+        listen="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
+        webhook_url=WEBHOOK_URL + f"/{TELEGRAM_BOT_TOKEN}"
+    )
+
 # Configure Gemini
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel("models/gemini-2.0-flash")
