@@ -149,11 +149,11 @@ def main():
 
     print(f"✅ Starting webhook on port {port}...")
 
-    # app.run_webhook(
-    #     listen="0.0.0.0",
-    #     port=port,
-    #     webhook_url=WEBHOOK_URL + f"/{TELEGRAM_BOT_TOKEN}"
-    # )
+    app.run_webhook(
+        listen="0.0.0.0",
+        port=port,
+        webhook_url=WEBHOOK_URL + f"/{TELEGRAM_BOT_TOKEN}"
+    )
     print("✅ Starting polling...")
     app.run_polling()
 
