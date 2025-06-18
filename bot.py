@@ -136,7 +136,7 @@ async def handle_language_choice(update: Update, context: ContextTypes.DEFAULT_T
 
 
 
-WEBHOOK_URL = f"https://codebooster.onrender.com"  # Replace with your actual Render URL
+# WEBHOOK_URL = f"https://codebooster.onrender.com"  # Replace with your actual Render URL
 # Bot main loop
 def main():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
@@ -145,15 +145,15 @@ def main():
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     app.add_handler(CallbackQueryHandler(handle_language_choice))
 
-    port = int(os.environ.get("PORT", 5000))  # Render provides PORT env variable
+    # port = int(os.environ.get("PORT", 5000))  # Render provides PORT env variable
 
-    print(f"✅ Starting webhook on port {port}...")
+    # print(f"✅ Starting webhook on port {port}...")
 
-    app.run_webhook(
-        listen="0.0.0.0",
-        port=port,
-        webhook_url=WEBHOOK_URL + f"/{TELEGRAM_BOT_TOKEN}"
-    )
+    # app.run_webhook(
+    #     listen="0.0.0.0",
+    #     port=port,
+    #     webhook_url=WEBHOOK_URL + f"/{TELEGRAM_BOT_TOKEN}"
+    # )
     print("✅ Starting polling...")
     app.run_polling()
 
